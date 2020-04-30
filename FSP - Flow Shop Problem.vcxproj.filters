@@ -21,9 +21,21 @@
     <ClCompile Include="Brute_force.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Johnson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Algorithm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Brute_force.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Johnson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

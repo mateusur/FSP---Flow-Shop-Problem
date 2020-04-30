@@ -138,11 +138,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Algorithm.cpp" />
     <ClCompile Include="Brute_force.cpp" />
+    <ClCompile Include="Johnson.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Algorithm.h" />
     <ClInclude Include="Brute_force.h" />
+    <ClInclude Include="Johnson.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
