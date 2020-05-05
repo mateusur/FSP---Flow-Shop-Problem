@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Algorithm.cpp" />
+    <ClCompile Include="Branch_and_Bound.cpp" />
     <ClCompile Include="BruteForce.cpp" />
     <ClCompile Include="Brute_force.cpp" />
     <ClCompile Include="Johnson.cpp" />
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm.h" />
+    <ClInclude Include="Branch_and_Bound.h" />
     <ClInclude Include="BruteForce.h" />
     <ClInclude Include="Brute_force.h" />
     <ClInclude Include="Johnson.h" />

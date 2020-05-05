@@ -1,6 +1,7 @@
 #include "Algorithm.h"
 
 #include <algorithm>
+#include <iostream>
 
 int Algorithm::calculate_Cmax(std::vector<unsigned> kolejnosc) {
 	unsigned tasks = data.size();
@@ -34,9 +35,9 @@ int Algorithm::calculate_Cmax(std::vector<unsigned> kolejnosc) {
 	//cout << endl;
 	//for (int i = 0; i < c.size(); i++) {
 	//	for (int j = 0; j < c[0].size(); j++) {
-	//		cout << c[i][j] << " ";
+	//		std::cout << c[i][j] << " ";
 	//	}
-	//	cout << endl;
+	//	std::cout << std::endl;
 	//}
 	int Cmax = c[machines - 1][tasks - 1];
 	return Cmax;
