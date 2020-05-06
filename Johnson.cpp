@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 using namespace std;
-extern string names[6];
+//extern string names[];
 
 //bool compare(const vector<unsigned>& v1, vector<unsigned>& v2) {
 //	short min_v1 = v1[0] > v1[1] ? 1 : 0;

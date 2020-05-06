@@ -13,13 +13,14 @@
 
 using namespace std;
 
-string names[6] = {
+string names[7] = {
 "data001.txt",
 "data002.txt",
 "data003.txt",
 "data004.txt",
 "data005.txt",
 "data006.txt",
+"data007.txt"
 };
 
 int bestCmaxB = INT16_MAX;
@@ -73,9 +74,19 @@ int main() {
 	//Johnson obiekt(0);
 	///*cout << obiekt.Johnson_algorithm();*/
 	//obiekt.Johnson_algorithm();
-	Branch_and_Bound obiekt(0);
-	obiekt.bnb();
-	Algorithm obiekt2();
+	
+			
+	cout << "----Czasy dla wersji bound x ----" <<endl;
+	for (int i=1;i<2;i++) {
+		Branch_and_Bound obiekt(1);
+		//auto start = std::chrono::steady_clock::now();
+		obiekt.bnb();
+		//auto end = std::chrono::steady_clock::now();
+		//auto czas = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+		//cout << "Czas algorytmu data00"<<i << " :"<< czas<<endl;
+	}
+	
+	
 	//obiekt.calculate_Cmax({ 0,1,2,3,4,5,6,7 });
 	return 0;
 }

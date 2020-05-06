@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-extern std::string names[6];
+extern std::string names[7];
 typedef std::vector<std::vector<unsigned>> Matrix;
 int calculate_Cmax(const Matrix& data, std::vector<unsigned> kolejnosc);
 bool compareID(const std::vector<unsigned>& v1, std::vector<unsigned>& v2);
