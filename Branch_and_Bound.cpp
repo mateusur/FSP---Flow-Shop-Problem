@@ -67,6 +67,7 @@ int Branch_and_Bound::bound3(std::vector<unsigned> pi, std::vector<unsigned> ava
 	}
 	return *max_element(max.begin(),max.end());
 }
+
 int Branch_and_Bound::bound4(std::vector<unsigned> pi, std::vector<unsigned> available) {
 	std::vector<unsigned> max;
 	unsigned tasks = data.size();
@@ -86,9 +87,9 @@ int Branch_and_Bound::bound4(std::vector<unsigned> pi, std::vector<unsigned> ava
 			sum += data[available[k]][i];
 		}
 		std::vector<int> min_sum;
-		for (int d = i + 1;d < machines;d++) {
+		for (int c = 0;c < available.size();c++) {
 			int temp_sum = 0;
-			for (int c = 0;c < available.size();c++) {
+			for (int d = i + 1;d < machines;d++) {
 				temp_sum += data[available[c]][d];
 			}
 			min_sum.push_back(temp_sum);
@@ -99,6 +100,7 @@ int Branch_and_Bound::bound4(std::vector<unsigned> pi, std::vector<unsigned> ava
 	}
 	return *max_element(max.begin(), max.end());
 }
+
 Branch_and_Bound::Branch_and_Bound(int nuber_of_file) {
 	int tasks, machines, machine_num, p_time;
 	std::vector<unsigned> v_temp;
@@ -138,7 +140,7 @@ int Branch_and_Bound::BnB(int job, std::vector<unsigned> pi, std::vector<unsigne
 	pi.push_back(job);
 	available.erase(std::remove(available.begin(), available.end(), job));
 	if(!available.empty()) {
-		int LB = bound3(pi,available);
+		int LB = bound4(pi,available);
 		if(LB<=UB) {
 			for (int j = 0;j < available.size();j++) 
 				BnB(available[j], pi,available);	
