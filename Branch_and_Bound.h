@@ -13,7 +13,7 @@ class Branch_and_Bound :public Algorithm
 public:
 	Branch_and_Bound(int nuber_of_file);
 	int BnB(int job, std::vector<unsigned> pi, std::vector<unsigned> available);
-	void bnb();
+	void bnb(int i);
 	//int calculate_Cmax(std::vector<unsigned> kolejnosc);
 };
 

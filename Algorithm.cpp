@@ -6,6 +6,7 @@
 int Algorithm::calculate_Cmax(std::vector<unsigned> kolejnosc) {
 	unsigned tasks = data.size();
 	unsigned machines = data[1].size() - 1;
+	
 	for (int i = 0; i < machines; i++) {
 		for (int j = 0; j < kolejnosc.size(); j++) {
 			if (i == 0 && j == 0) {
@@ -28,11 +29,12 @@ int Algorithm::calculate_Cmax(std::vector<unsigned> kolejnosc) {
 	}
 	//	for (int i = 0; i < machines; i++) {
 	//	for (int j = 0; j < tasks; j++) {
-	//		cout << s[i][j] << " ";
+	//		std::cout << s[i][j] << " ";
 	//	}
-	//	cout << endl;
+	//	std::cout << std::endl;
 	//}
-	//cout << endl;
+	
+	//std::cout <<"Wartosci C: "<< std::endl;
 	//for (int i = 0; i < c.size(); i++) {
 	//	for (int j = 0; j < c[0].size(); j++) {
 	//		std::cout << c[i][j] << " ";

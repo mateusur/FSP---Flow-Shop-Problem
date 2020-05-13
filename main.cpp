@@ -10,17 +10,18 @@
 #include "BruteForce.h"
 #include "Branch_and_Bound.h"
 //#include "BruteForce.h"
+#include "NEH.h"
 
 using namespace std;
 
 string names[7] = {
-"data001.txt",
-"data002.txt",
-"data003.txt",
-"data004.txt",
-"data005.txt",
-"data006.txt",
-"data007.txt"
+	"data001.txt",
+	"data002.txt",
+	"data003.txt",
+	"data004.txt",
+	"data005.txt",
+	"data006.txt",
+	"data007.txt"
 };
 
 int bestCmaxB = INT16_MAX;
@@ -71,23 +72,41 @@ int main() {
 	//	cout << "\nCzas rekursji dla klasy dla n= " << i + 1 << ": " << double(czas / n) << endl<<endl;
 	//
 	//}
+
 	//Johnson obiekt(0);
-	///*cout << obiekt.Johnson_algorithm();*/
+	//cout << obiekt.Johnson_algorithm();
 	//obiekt.Johnson_algorithm();
+
+	//std::ofstream file;
+	//file.open("Wyniki.txt", ios::app);
+	//cout << "----Czasy dla wersji bound 3 ----" <<endl;
+	//file << "\nBnB LB1 & ";
+	//for (int i = 0;i < 6;i++) {
+	//	Branch_and_Bound obiekt(i);
+	//	long long sredni_czas = 0;
+	//	for(int j=0;j<1;j++) {
+	//		auto start = std::chrono::steady_clock::now();
+	//		obiekt.bnb(i);
+	//		auto end = std::chrono::steady_clock::now();
+	//		auto czas = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+	//		sredni_czas += czas;
+	//	}
+	//	sredni_czas /= 1;
+	//	if(i<5)
+	//	file << sredni_czas << " & ";
+	//	else {
+	//		file << sredni_czas << " \\\\";
+	//	}
+	//}
+
 	
-			
-	cout << "----Czasy dla wersji bound x ----" <<endl;
-	for (int i=1;i<2;i++) {
-		Branch_and_Bound obiekt(1);
-		//auto start = std::chrono::steady_clock::now();
-		obiekt.bnb();
-		//auto end = std::chrono::steady_clock::now();
-		//auto czas = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-		//cout << "Czas algorytmu data00"<<i << " :"<< czas<<endl;
+	////}
+	for (int i = 0; i < 6; i++) {
+		NEH obiekt2(i);
+		cout << "Cmax dla podstawowego NEH: " << obiekt2.NEH_algorithm() << endl;
+		cout << "------------------------------------------------" << endl;
+		cout << "Cmax dla NEH+: " << obiekt2.job_with_max_operations() << endl;
+		cout << "------------------------------------------------" << endl;
 	}
-	
-	
-	//obiekt.calculate_Cmax({ 0,1,2,3,4,5,6,7 });
 	return 0;
 }
-

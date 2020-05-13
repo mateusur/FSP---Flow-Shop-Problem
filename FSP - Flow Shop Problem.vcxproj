@@ -144,6 +144,7 @@
     <ClCompile Include="Brute_force.cpp" />
     <ClCompile Include="Johnson.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NEH.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="BruteForce.h" />
     <ClInclude Include="Brute_force.h" />
     <ClInclude Include="Johnson.h" />
+    <ClInclude Include="NEH.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -33,6 +33,9 @@
     <ClCompile Include="Branch_and_Bound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NEH.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Brute_force.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Branch_and_Bound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NEH.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

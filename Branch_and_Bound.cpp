@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include "fstream"
+#include "NEH.h"
 
 int Branch_and_Bound::bound(std::vector<unsigned> pi, std::vector<unsigned> available) {
 	std::vector<unsigned> max;
@@ -141,7 +142,7 @@ int Branch_and_Bound::BnB(int job, std::vector<unsigned> pi, std::vector<unsigne
 	available.erase(std::remove(available.begin(), available.end(), job));
 	if(!available.empty()) {
 		int LB = bound4(pi,available);
-		if(LB<=UB) {
+		if(LB<UB) {
 			for (int j = 0;j < available.size();j++) 
 				BnB(available[j], pi,available);	
 		}
@@ -156,9 +157,12 @@ int Branch_and_Bound::BnB(int job, std::vector<unsigned> pi, std::vector<unsigne
 	return Cmax;
 }
 
-void Branch_and_Bound::bnb() {
+void Branch_and_Bound::bnb(int i) {
+	count = 0;
 	std::vector<unsigned> pi_order2;
-	std::vector<unsigned> available =pi_order;
+	//NEH obiekt2(i);
+	//pi_order = obiekt2.NEH_algorithm();
+	std::vector<unsigned> available=pi_order;
 	for(int job=0;job<data.size();job++) {
 		 BnB(job, pi_order2,available );
 		pi_order2.clear();
