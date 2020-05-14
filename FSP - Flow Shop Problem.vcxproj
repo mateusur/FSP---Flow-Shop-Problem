@@ -145,6 +145,7 @@
     <ClCompile Include="Johnson.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NEH.cpp" />
+    <ClCompile Include="Simulated_annealing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Brute_force.h" />
     <ClInclude Include="Johnson.h" />
     <ClInclude Include="NEH.h" />
+    <ClInclude Include="Simulated_annealing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

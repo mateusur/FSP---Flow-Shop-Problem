@@ -264,7 +264,7 @@ NEH::NEH(int nuber_of_file) {
 
 }
 
-int NEH::NEH_algorithm() {
+vector<unsigned> NEH::NEH_algorithm() {
 	vector<unsigned> weight_vector= calculate_weights();
 	vector<unsigned> pi_vector;
 	while (!weight_vector.empty()) {
@@ -278,8 +278,8 @@ int NEH::NEH_algorithm() {
 		cout << k << " ";
 	cout << endl;
 	//cout << "Cmax: " << bestCmax;
-	return calculate_Cmax(pi_vector);
-	//return pi_vector;
+	//return calculate_Cmax(pi_vector);
+	return pi_vector;
 }
 
 int NEH::job_that_reduce_cmax_most() {

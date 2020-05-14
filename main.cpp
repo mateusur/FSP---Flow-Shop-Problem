@@ -11,7 +11,7 @@
 #include "Branch_and_Bound.h"
 //#include "BruteForce.h"
 #include "NEH.h"
-
+#include "Simulated_annealing.h"
 using namespace std;
 
 string names[7] = {
@@ -80,12 +80,12 @@ int main() {
 	//std::ofstream file;
 	//file.open("Wyniki.txt", ios::app);
 	//cout << "----Czasy dla wersji bound 3 ----" <<endl;
-	//file << "\nBnB LB1 & ";
+	/*file << "\nBnB LB1 & ";*/
 	//for (int i = 0;i < 6;i++) {
 	//	Branch_and_Bound obiekt(i);
-	//	long long sredni_czas = 0;
-	//	for(int j=0;j<1;j++) {
-	//		auto start = std::chrono::steady_clock::now();
+	////	long long sredni_czas = 0;
+	////	for(int j=0;j<1;j++) {
+	////		auto start = std::chrono::steady_clock::now();
 	//		obiekt.bnb(i);
 	//		auto end = std::chrono::steady_clock::now();
 	//		auto czas = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
@@ -101,12 +101,14 @@ int main() {
 
 	
 	////}
-	for (int i = 0; i < 6; i++) {
-		NEH obiekt2(i);
-		cout << "Cmax dla podstawowego NEH: " << obiekt2.NEH_algorithm() << endl;
-		cout << "------------------------------------------------" << endl;
-		cout << "Cmax dla NEH+: " << obiekt2.job_with_max_operations() << endl;
-		cout << "------------------------------------------------" << endl;
-	}
+	////for (int i = 0; i < 6; i++) {
+	//	NEH obiekt2(6);
+	//	cout << "Cmax dla podstawowego NEH: " << obiekt2.NEH_algorithm() << endl;
+	//	cout << "------------------------------------------------" << endl;
+	//	cout << "Cmax dla NEH+: " << obiekt2.job_with_max_operations() << endl;
+	//	cout << "------------------------------------------------" << endl;
+	////}
+
+	Simulated_annealing SA(1);
 	return 0;
 }

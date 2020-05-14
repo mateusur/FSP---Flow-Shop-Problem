@@ -20,7 +20,7 @@ class NEH :public Algorithm
 
 public:
 	NEH(int nuber_of_file);
-	int NEH_algorithm(); // return int if you want bestCmax or vector<unsigned> if you want pi_order
+	std::vector<unsigned> NEH_algorithm(); // return int if you want bestCmax or vector<unsigned> if you want pi_order
 	int job_that_reduce_cmax_most();
 	int job_with_longest_operation_on_critical_path();
 	int job_with_biggest_sum_time_on_crcital_path();

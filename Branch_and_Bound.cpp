@@ -141,7 +141,7 @@ int Branch_and_Bound::BnB(int job, std::vector<unsigned> pi, std::vector<unsigne
 	pi.push_back(job);
 	available.erase(std::remove(available.begin(), available.end(), job));
 	if(!available.empty()) {
-		int LB = bound4(pi,available);
+		int LB = bound(pi,available);
 		if(LB<UB) {
 			for (int j = 0;j < available.size();j++) 
 				BnB(available[j], pi,available);	
@@ -160,8 +160,8 @@ int Branch_and_Bound::BnB(int job, std::vector<unsigned> pi, std::vector<unsigne
 void Branch_and_Bound::bnb(int i) {
 	count = 0;
 	std::vector<unsigned> pi_order2;
-	//NEH obiekt2(i);
-	//pi_order = obiekt2.NEH_algorithm();
+	NEH obiekt2(i);
+	pi_order = obiekt2.NEH_algorithm();
 	std::vector<unsigned> available=pi_order;
 	for(int job=0;job<data.size();job++) {
 		 BnB(job, pi_order2,available );
