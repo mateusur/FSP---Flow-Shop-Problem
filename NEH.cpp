@@ -162,7 +162,7 @@ std::vector<unsigned> NEH::helper( std::vector<unsigned> pi_vector) {
 		}
 		
 		temp_sum = calculate_Cmax(pi_vector);
-		critical_path(pi_vector);
+		//critical_path(pi_vector);
 		/*cout << "Wartosc cmax: " << temp_sum << endl;
 		cout << "Dla vectora: ";
 		for (auto k : pi_vector)
@@ -182,7 +182,7 @@ std::vector<unsigned> NEH::helper( std::vector<unsigned> pi_vector) {
 	return  pi_anwser;
 }
 
-std::vector<unsigned> NEH::biggest_Cmax_diffrence(std::vector<unsigned> pi_vector, int forbidden_job) {
+int NEH::biggest_Cmax_diffrence(std::vector<unsigned> pi_vector, int forbidden_job) {
 	int temp_Cmax;
 	int job_number;
 	int diffrence;
@@ -192,49 +192,57 @@ std::vector<unsigned> NEH::biggest_Cmax_diffrence(std::vector<unsigned> pi_vecto
 		diffrence = INT16_MIN;
 		if (pi_vector[i] != forbidden_job) {
 			int deleted_job = pi_vector[i];
-			cout << "Przed erase: ";
+			/*cout << "Przed erase: ";
 			for (auto element : pi_vector) {
 				cout << element + 1 << " ";
-			}
+			}*/
 			vector<unsigned> copy = pi_vector;
 			pi_vector.erase(std::remove(pi_vector.begin(), pi_vector.end(), deleted_job));
-			cout << "Po erase: ";
+			/*cout << "Po erase: ";
 			for (auto element : pi_vector) {
 				cout << element+1 << " ";
 			}
-			cout << endl;
+			cout << endl;*/
 			temp_Cmax = calculate_Cmax(pi_vector);
-			cout << "best cmax -temp wynosi: " << bestCmax - temp_Cmax << endl;
+			/*cout << "best cmax -temp wynosi: " << bestCmax - temp_Cmax << endl;*/
 			if (diffrence < bestCmax - temp_Cmax) {
 				diffrence = bestCmax - temp_Cmax;
 				job_number = deleted_job;
 				best_pi = pi_vector;
-				cout << "Roznica wynosi: " << diffrence << endl;
-				cout << "Usunelismy zadanie: " << job_number+1 << endl;
+				/*cout << "Roznica wynosi: " << diffrence << endl;
+				cout << "Usunelismy zadanie: " << job_number+1 << endl;*/
 			}
 			pi_vector = copy;
-			cout << "I cofamy do : ";
+			/*cout << "I cofamy do : ";
 			for (auto element : pi_vector) {
 				cout << element+1 << " ";
 			}
-			cout << endl;
+			cout << endl;*/
 		}
 	}
 
-	cout << "A wiec ostateczny vektor : ";
+	/*cout << "A wiec ostateczny vektor : ";
 	for (auto element : best_pi) {
 		cout << element + 1 << " ";
 	}
-	cout << endl;
-	return best_pi;
+	cout << endl;*/
+	return job_number;
 }
 
-NEH::NEH(int nuber_of_file) {
+NEH::NEH(int number_of_file) {
 	int tasks, machines, machine_num, p_time;
 	std::vector<unsigned> v_temp;
 	std::ifstream file;
-	file.open("data/" + names[nuber_of_file], std::ios::in);
-	file >> tasks >> machines;
+	std::string name;
+	if (number_of_file < 10)
+		name = "ta00" + std::to_string(number_of_file) + ".txt";
+	else if (number_of_file < 100)
+		name = "ta0" + std::to_string(number_of_file) + ".txt";
+	else
+		name = "ta" + std::to_string(number_of_file) + ".txt";
+	file.open("data/fspB/" + name, std::ios::in);
+	string file_name;
+	file >> file_name >> tasks >> machines;
 	for (int i = 0; i < tasks; i++) {
 		for (int j = 0; j < machines; j++) {
 			file >> machine_num >> p_time;
@@ -264,7 +272,7 @@ NEH::NEH(int nuber_of_file) {
 
 }
 
-vector<unsigned> NEH::NEH_algorithm() {
+Anwser NEH::NEH_algorithm() {
 	vector<unsigned> weight_vector= calculate_weights();
 	vector<unsigned> pi_vector;
 	while (!weight_vector.empty()) {
@@ -273,40 +281,46 @@ vector<unsigned> NEH::NEH_algorithm() {
 		pi_vector = helper(pi_vector);
 	}
 	
-	cout << "Wynik: ";
+	/*cout << "Wynik: ";
 	for (auto k : pi_vector)
 		cout << k << " ";
-	cout << endl;
+	cout << endl;*/
 	//cout << "Cmax: " << bestCmax;
 	//return calculate_Cmax(pi_vector);
-	return pi_vector;
+	//return pi_vector;
+	return { calculate_Cmax(pi_vector),pi_vector };
 }
 
-int NEH::job_that_reduce_cmax_most() {
+Anwser NEH::job_that_reduce_cmax_most() {
 	vector<unsigned> weight_vector = calculate_weights();
 	vector<unsigned> pi_vector;
 	vector<unsigned> copy;
+	int deleted_job;
 	while (!weight_vector.empty()) {
 		pi_vector.push_back(weight_vector[0]);
 		//weight_vector.erase(weight_vector.begin());
 		pi_vector = helper(pi_vector);
 		//acceleration // NEH+
 		if (pi_vector.size() > 2) {
-			pi_vector = biggest_Cmax_diffrence(pi_vector, weight_vector[0]);
+			deleted_job = biggest_Cmax_diffrence(pi_vector, weight_vector[0]);
+			pi_vector.erase(std::remove(pi_vector.begin(), pi_vector.end(), deleted_job));
+			pi_vector.push_back(deleted_job);
+			pi_vector = helper(pi_vector);
+			
 		}
 		
 		/*cout << "KONIEC JEDNEGO OBROTU, NASTEPNE ZADANIE " << endl;*/
 		weight_vector.erase(weight_vector.begin());
 	}
-	cout << "Wynik: ";
+	/*cout << "Wynik: ";
 	for (auto k : pi_vector)
 		cout << k << " ";
-	cout << endl;
+	cout << endl;*/
 	//cout << "Cmax: " << bestCmax;
-	return calculate_Cmax(pi_vector);
+	return { calculate_Cmax(pi_vector),pi_vector };
 }
 
-int NEH::job_with_longest_operation_on_critical_path() {
+Anwser NEH::job_with_longest_operation_on_critical_path() {
 	vector<unsigned> weight_vector = calculate_weights();
 	vector<unsigned> pi_vector;
 	unsigned machines = data[1].size();
@@ -335,13 +349,13 @@ int NEH::job_with_longest_operation_on_critical_path() {
 		}
 	}//koniec while
 	
-	cout << "Wynik: ";
-	cout << pi_vector;
+	/*cout << "Wynik: ";
+	cout << pi_vector;*/
 	//cout << "Cmax: " << bestCmax;
-	return calculate_Cmax(pi_vector);
+	return { calculate_Cmax(pi_vector),pi_vector };
 }
 
-int NEH::job_with_biggest_sum_time_on_crcital_path() {
+Anwser NEH::job_with_biggest_sum_time_on_crcital_path() {
 	vector<unsigned> weight_vector = calculate_weights();
 	vector<unsigned> pi_vector;
 	unsigned machines = data[1].size();
@@ -378,15 +392,15 @@ int NEH::job_with_biggest_sum_time_on_crcital_path() {
 		}
 	}//koniec while
 
-	cout << "Wynik: ";
+	/*cout << "Wynik: ";
 	for (auto k : pi_vector)
 		cout << k << " ";
-	cout << endl;
+	cout << endl;*/
 	//cout << "Cmax: " << bestCmax;
-	return calculate_Cmax(pi_vector);
+	return { calculate_Cmax(pi_vector),pi_vector };
 }
 
-int NEH::job_with_max_operations() {
+Anwser NEH::job_with_max_operations() {
 	vector<unsigned> weight_vector = calculate_weights();
 	vector<unsigned> pi_vector;
 	unsigned machines = data[1].size();
@@ -418,9 +432,9 @@ int NEH::job_with_max_operations() {
 		}
 	}//koniec while
 
-	cout << "Wynik: ";
-	cout << pi_vector;
-	return calculate_Cmax(pi_vector);
+	//cout << "Wynik: ";
+	//cout << pi_vector;
+	return { calculate_Cmax(pi_vector),pi_vector };
 }
 
 std::ostream& operator<<(std::ostream& os, const std::vector<unsigned>& vector) {

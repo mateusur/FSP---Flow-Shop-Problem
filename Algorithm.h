@@ -3,7 +3,8 @@
 #include <vector>
 typedef std::vector<std::vector<unsigned>> Matrix;
 class Algorithm
-{	
+{
+	
 protected:
 	Matrix s, c, data;
 	std::vector<unsigned> pi_order;
@@ -16,8 +17,12 @@ protected:
 	"data006.txt",
 	"data007.txt"
 	};
-	int calculate_Cmax(std::vector<unsigned> kolejnosc);
+	int calculate_Cmax(const std::vector<unsigned>& kolejnosc);
 	int calculate_Cmax(const Matrix& data);
-	
 };
 
+struct Anwser
+{
+	int Cmax;
+	std::vector<unsigned> pi_vector;
+};

@@ -161,7 +161,7 @@ void Branch_and_Bound::bnb(int i) {
 	count = 0;
 	std::vector<unsigned> pi_order2;
 	NEH obiekt2(i);
-	pi_order = obiekt2.NEH_algorithm();
+	pi_order = obiekt2.NEH_algorithm().pi_vector;
 	std::vector<unsigned> available=pi_order;
 	for(int job=0;job<data.size();job++) {
 		 BnB(job, pi_order2,available );

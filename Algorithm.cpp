@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <iostream>
 
-int Algorithm::calculate_Cmax(std::vector<unsigned> kolejnosc) {
+int Algorithm::calculate_Cmax(const std::vector<unsigned> &kolejnosc) {
 	unsigned tasks = data.size();
 	unsigned machines = data[1].size() - 1;
 	
