@@ -39,6 +39,9 @@
     <ClCompile Include="Simulated_annealing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tabu_search.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Brute_force.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Simulated_annealing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tabu_search.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

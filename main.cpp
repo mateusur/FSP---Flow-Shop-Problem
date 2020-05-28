@@ -12,6 +12,7 @@
 //#include "BruteForce.h"
 #include "NEH.h"
 #include "Simulated_annealing.h"
+#include "Tabu_search.h"
 using namespace std;
 
 string names[7] = {
@@ -27,7 +28,6 @@ string names[7] = {
 int bestCmaxB = INT16_MAX;
 
 int main() {
-
 	//int n = 1;
 	//long long czas = 0;
 	//for (int i = 0; i < 6; i++) {
@@ -75,7 +75,6 @@ int main() {
 	//Johnson obiekt(0);
 	//cout << obiekt.Johnson_algorithm();
 	//obiekt.Johnson_algorithm();
-
 	//std::ofstream file;
 	//file.open("Wyniki_NEH2.txt", ios::app);
 	//for(int i=41;i<=50;i+=1) {
@@ -196,7 +195,6 @@ int main() {
 //	cout << "policzone end "<<i<< " \n";
 //}
 //file.close();
-
 //Simulated_annealing SA(i);
 //file << "ta" + to_string(i) << " & ";
 //file << SA.Algorithm(1, 1, 2, 1, 0.1, 2).Cmax << " & ";
@@ -210,50 +208,67 @@ int main() {
 //file << SA.Algorithm(1, 1, 2, 1, 0.001, 2).Cmax << " & ";
 //file << SA.Algorithm(1,1, 2, 1, 0.001, 2).Cmax << " & ";
 //file << SA.Algorithm(1, 2, 2, 1, 0.001, 2).Cmax << " \\\\ " << endl;
-	int init_temp[3]{1, 2, 3};
-	int init_L[3]{1,2,3};
-	int init_x[3]{ 1,2,3 };
-	int init_alfa[3]{ 1,2,3 };
-	double init_temEND[3]{ 0.1,0.01,0.001 };
-	int mode[3]{ 1,2,3 };
+	//int init_temp[3]{1, 2, 3};
+	//int init_L[3]{1,2,3};
+	//int init_x[3]{ 1,2,3 };
+	//int init_alfa[3]{ 1,2,3 };
+	//double init_temEND[3]{ 0.1,0.01,0.001 };
+	//int mode[3]{ 1,2,3 };
+	//int temp, L, x, alfa, tempEND, mod;
+	//srand(time(NULL));
+	//std::ofstream file;
+	//file.open("Wyniki_SA_zmienneWszystko.txt", ios::app);
+	//for(int j=0;j<8;j++) {
+	//	temp = rand() % 3;
+	//	L = rand() % 3;
+	//	x = rand() % 3;
+	//	alfa = rand() % 3;
+	//	tempEND = rand() % 3;
+	//	mod = rand() % 3;
+	//	if (mod == 0) {
+	//		file << "Temp: " << temp << " L: " << L << " alfa: " << alfa << " tempEND: " << tempEND << " mod: " << mod << endl;
+	//		cout << "Temp: " << temp << " L: " << L << " alfa: " << alfa << " tempEND: " << tempEND << " mod: " << mod << endl;
+	//	}
+	//	else if (mod == 1) {
+	//		file << "Temp: " << temp << " L: " << L << " x: " << x << " tempEND: " << tempEND << " mod: " << mod << endl;
+	//		cout << "Temp: " << temp << " L: " << L << " x: " << x << " tempEND: " << tempEND << " mod: " << mod << endl;
+	//	}
+	//	else {
+	//		file << "Temp: " << temp << " L: " << L << " tempEND: " << tempEND << " mod: " << mod << endl;
+	//		cout << "Temp: " << temp << " L: " << L << " tempEND: " << tempEND << " mod: " << mod << endl;
+	//	}
+	//	
+	//	for (int i = 1;i <= 120;i += 10) {
+	//	
+	//		Simulated_annealing SA(i);
+	//		if(j<10)
+	//		file << "ta" + to_string(i) ;
+	//		file <<" & " <<  SA.Algorithm(init_temp[temp], init_L[L], init_x[x], init_alfa[alfa], init_temEND[tempEND], mode[mod]).Cmax << " \\\\ " << endl;
+	//		cout << "policzone end " << i << " \n";
+	//		
+	//	}
+	//}
+	//file.close();
 
-	int temp, L, x, alfa, tempEND, mod;
-	
-	srand(time(NULL));
-	
-	std::ofstream file;
-	file.open("Wyniki_SA_zmienneWszystko.txt", ios::app);
-	for(int j=0;j<8;j++) {
-		temp = rand() % 3;
-		L = rand() % 3;
-		x = rand() % 3;
-		alfa = rand() % 3;
-		tempEND = rand() % 3;
-		mod = rand() % 3;
-		if (mod == 0) {
-			file << "Temp: " << temp << " L: " << L << " alfa: " << alfa << " tempEND: " << tempEND << " mod: " << mod << endl;
-			cout << "Temp: " << temp << " L: " << L << " alfa: " << alfa << " tempEND: " << tempEND << " mod: " << mod << endl;
-		}
-		else if (mod == 1) {
-			file << "Temp: " << temp << " L: " << L << " x: " << x << " tempEND: " << tempEND << " mod: " << mod << endl;
-			cout << "Temp: " << temp << " L: " << L << " x: " << x << " tempEND: " << tempEND << " mod: " << mod << endl;
-		}
-		else {
-			file << "Temp: " << temp << " L: " << L << " tempEND: " << tempEND << " mod: " << mod << endl;
-			cout << "Temp: " << temp << " L: " << L << " tempEND: " << tempEND << " mod: " << mod << endl;
-		}
-		
-		for (int i = 1;i <= 120;i += 10) {
-		
-			Simulated_annealing SA(i);
-			if(j<10)
-			file << "ta" + to_string(i) ;
-			file <<" & " <<  SA.Algorithm(init_temp[temp], init_L[L], init_x[x], init_alfa[alfa], init_temEND[tempEND], mode[mod]).Cmax << " \\\\ " << endl;
-			cout << "policzone end " << i << " \n";
+
 			
-		}
+			
+			
+	for(int i=11;i<=90;i+=10) {
+		cout << "NR pliku: " << i << endl;
+		//NEH plik(i);
+		//cout << plik.job_with_biggest_sum_time_on_crcital_path().Cmax << endl;
+		Tabu_search obiekt(i);
+		auto start = std::chrono::steady_clock::now();
+		cout <<"Cmax TS: "<< obiekt.algorithm().Cmax<<endl;
+		auto end = std::chrono::steady_clock::now();
+		cout << "Czas TS: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() <<endl;
+		 start = std::chrono::steady_clock::now();
+		cout << "Cmax TSAB: " << obiekt.algorithm_with_blocks().Cmax << endl ;
+		 end = std::chrono::steady_clock::now();
+		cout << "Czas TSAB: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << endl << endl;
 	}
 	
-	file.close();
+	
 	return 0;
 }
