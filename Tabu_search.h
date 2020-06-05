@@ -11,8 +11,8 @@ class Tabu_search : public Algorithm
 	std::vector<unsigned> blocks(const std::vector<machine_job>& cricital_path);
 public:
 	Tabu_search(const int& number_of_file);
-	Anwser algorithm();
-	Anwser algorithm_with_blocks();
+	Anwser algorithm(int it_limit, int cadency_num);
+	Anwser algorithm_with_blocks(int it_limit, int cadency_num);
 	
 };
 

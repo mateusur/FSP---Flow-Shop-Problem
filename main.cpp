@@ -251,24 +251,41 @@ int main() {
 	//file.close();
 
 
-			
-			
-			
-	for(int i=11;i<=90;i+=10) {
+int limit[2] = { 1000,5000 };
+int cadency_nr[2] = { 0,1 };
+	std::ofstream file,file2;
+	file.open("Wyniki_TS_natural.txt", ios::app);
+	file2.open("Czasy_TS_natural.txt", ios::app);
+	for(int i=1;i<=120;i+=10) {
 		cout << "NR pliku: " << i << endl;
-		//NEH plik(i);
-		//cout << plik.job_with_biggest_sum_time_on_crcital_path().Cmax << endl;
-		Tabu_search obiekt(i);
-		auto start = std::chrono::steady_clock::now();
-		cout <<"Cmax TS: "<< obiekt.algorithm().Cmax<<endl;
-		auto end = std::chrono::steady_clock::now();
-		cout << "Czas TS: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() <<endl;
-		 start = std::chrono::steady_clock::now();
-		cout << "Cmax TSAB: " << obiekt.algorithm_with_blocks().Cmax << endl ;
-		 end = std::chrono::steady_clock::now();
-		cout << "Czas TSAB: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << endl << endl;
+		file << "ta" << i << "&";
+		file2 << "ta" << i << "&";
+		for(int j=0;j<2;j++) {
+			for (int k = 0; k < 2;k++) {
+				if (i < 80) {
+					Tabu_search obiekt(i);
+					auto start = std::chrono::steady_clock::now();
+					file << obiekt.algorithm(limit[j],cadency_nr[k]).Cmax << "&" ;
+					auto end = std::chrono::steady_clock::now();
+					file2<< std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "&";
+				}
+				else {
+					file << " &";
+					file2 << " &";
+				}
+				Tabu_search obiekt2(i);
+				auto start = std::chrono::steady_clock::now();
+				file << obiekt2.algorithm_with_blocks(limit[j], cadency_nr[k]).Cmax << "&";
+				auto  end = std::chrono::steady_clock::now();
+				file2 << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "&";
+			}
+		}
+		cout << "8 policzonych" << endl;
+		file << "\\\\" << endl;
+		file2 << "\\\\" << endl;
 	}
 	
-	
+	file.close();
+	file2.close();
 	return 0;
 }

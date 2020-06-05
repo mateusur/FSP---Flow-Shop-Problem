@@ -167,16 +167,16 @@ Tabu_search::Tabu_search(const int& number_of_file) {
 	}
 }
 
-Anwser Tabu_search::algorithm() {
-	//NEH obiekt(nr_of_file);
-	vector<unsigned> pi = pi_order;
+Anwser Tabu_search::algorithm(int it_limit, int cadency_num) {
+	NEH obiekt(nr_of_file);
+	vector<unsigned> pi = obiekt.NEH_algorithm().pi_vector;
 	vector<unsigned> pi_new =pi;
 	vector<unsigned> best_pi = pi;
 	auto pi_size = pi.size();
-	int it_limit = 1000;
+	//int it_limit = 1000;
 	int iteration = 1;
 	int j2=0, k2=0;
-	int square = sqrt(pi_size);
+	int cadency[2] = {sqrt(pi_size),pi_size };
 	int C_best=0;
 	int bestCmax = calculate_Cmax(pi);
 	for(int i=0;i<it_limit;i++,++iteration) {
@@ -198,7 +198,7 @@ Anwser Tabu_search::algorithm() {
 		}
 		//move(pi.begin() + j2, pi.begin() + j2 + 1, pi.begin() + k2);
 		swap(pi[j2], pi[k2]);
-		tabu_matrix[j2][k2] = iteration + square;
+		tabu_matrix[j2][k2] = iteration + cadency[cadency_num];
 		int calculate_pi = calculate_Cmax(pi);
 		int tempCmax = calculate_Cmax(best_pi);
 		if (calculate_pi < tempCmax) {
@@ -211,17 +211,17 @@ Anwser Tabu_search::algorithm() {
 	return { bestCmax, best_pi};
 }
 
-Anwser Tabu_search::algorithm_with_blocks()
+Anwser Tabu_search::algorithm_with_blocks(int it_limit, int cadency_num)
 {
-	//NEH obiekt(nr_of_file);
-	vector<unsigned> pi = pi_order;
+	NEH obiekt(nr_of_file);
+	vector<unsigned> pi = obiekt.NEH_algorithm().pi_vector;
 	vector<unsigned> pi_new = pi;
 	vector<unsigned> best_pi = pi;
 	auto pi_size = pi.size();
-	int it_limit = 1000;
+	//int it_limit = 1;
 	int iteration = 1;
 	int j2 = 0, k2 = 0;
-	int square = sqrt(pi_size);
+	int cadency[2] = { sqrt(pi_size),pi_size };
 	int C_best = 0;
 	int bestCmax = calculate_Cmax(pi);
 	for (int i = 0; i < it_limit; i++, ++iteration) {
@@ -240,7 +240,7 @@ Anwser Tabu_search::algorithm_with_blocks()
 				else {
 					k++;
 					if(j==pi_size-1)
-						break;;
+						break;
 				}
 				if (tabu_matrix[j][k] < iteration) {
 					pi_new = pi;
@@ -253,11 +253,9 @@ Anwser Tabu_search::algorithm_with_blocks()
 					}
 				}
 			}
-
 		}
-
 		swap(pi[j2], pi[k2]);
-		tabu_matrix[j2][k2] = iteration + square;
+		tabu_matrix[j2][k2] = iteration + cadency[cadency_num];
 		int calculate_pi = calculate_Cmax(pi);
 		int tempCmax = calculate_Cmax(best_pi);
 		if (calculate_pi < tempCmax) {
